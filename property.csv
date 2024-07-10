@@ -1,1 +1,21 @@
-20,building,baramati,1793000
+PropertyID,PropertyName,PropertyLocation,PropertyPrice
+P001,Sunny Villa,Mumbai,50000000
+P002,Ocean View,Goa,65000000
+P003,Hilltop Mansion,Shimla,120000000
+P004,Riverfront Cottage,Kerala,30000000
+P005,Urban Loft,Bangalore,75000000
+P006,Country House,Pune,20000000
+P007,Lake House,Udaipur,55000000
+P008,Beach Bungalow,Chennai,80000000
+P009,Mountain Cabin,Manali,45000000
+P010,Suburban Home,Gurgaon,40000000
+P011,City Apartment,Kolkata,35000000
+P012,Farmhouse,Lucknow,15000000
+P013,Ranch House,Hyderabad,25000000
+P014,Penthouse,Delhi,95000000
+P015,Duplex,Ahmedabad,42000000
+P016,Single Family Home,Chandigarh,37000000
+P017,Condo,Jaipur,48000000
+P018,Townhouse,Surat,52000000
+P019,Studio Apartment,Noida,32000000
+P020,Luxury Villa,Coimbatore,68000000
