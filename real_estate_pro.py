@@ -54,7 +54,7 @@ def delete_property():
             property_location.pop(i)
             property_price.pop(i)
             break
-
+        
     with open('property.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         for j in range(len(property_id)):
@@ -65,7 +65,7 @@ def total_properties():
     print("Total number of properties:", len(property_id))
 
 def costly_property():
-    if not property_price:
+    if len(property_price) == 0:
         print("No properties available.")
         return
     
