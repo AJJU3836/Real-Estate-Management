@@ -55,27 +55,34 @@ def delete_property():
             property_price.pop(i)
             break
 
-    with open('property.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        for j in range(len(property_id)):
-            writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
+            with open('property.csv', mode='w', newline='') as file:
+                writer = csv.writer(file)
+                for j in range(len(property_id)):
+                    writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
 
 def total_properties():
     print("\nTotal Properties")
     print("Total number of properties:", len(property_id))
 
-def average_price():
-    total_price = sum([int(price) for price in property_price])
-    avg_price = total_price / len(property_price)
-    print("Average Property Price: ", avg_price)
+def costly_property():
+    if len(property_price) == 0:
+        print("No properties available.")
+        return
+    
+    max_price = int(property_price[0])
+    max_index = 0
 
-def report():
-    print("\nProperty Report")
-    print("ID \t Name \t\t Location \t\t Price")
-    for i in range(len(property_id)):
-        print(property_id[i], "\t", property_name[i], "\t", property_location[i], "\t", property_price[i])
-    total_properties()
-    average_price()
+    for i in range(1, len(property_price)):
+        if int(property_price[i]) > max_price:
+            max_price = int(property_price[i])
+            max_index = i
+
+    print("\nCostliest Property")
+    print("ID: ", property_id[max_index])
+    print("Name: ", property_name[max_index])
+    print("Location: ", property_location[max_index])
+    print("Price: ", property_price[max_index])
+
 
 property_id = []
 property_name = []
@@ -99,10 +106,9 @@ while count != 0:
     upass = input("Enter User Password: ")
     if uname == "admin" and upass == "password":
         print("Login successful")
-        count = 1
         cnt = 1
         while cnt != 0:
-            print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Average Property Price \n7. Report \n8. Exit")
+            print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Costliest Property \n7. Exit")
             ch = int(input("Enter your choice: "))
             if ch == 1:
                 add_property()
@@ -115,17 +121,14 @@ while count != 0:
             elif ch == 5:
                 total_properties()
             elif ch == 6:
-                average_price()
+                costly_property()
             elif ch == 7:
-                report()
-            elif ch == 8:
                 exit()
-    elif uname != "admin":
-        print("User name is incorrect!")
-    elif upass != "password":
-        print("User password is incorrect!")
-    elif uname != "admin" and upass != "password":
-        print("Both user name and password are incorrect")
-
-    count -= 1
-    print("Remaining attempts = ", count)
+            else:
+                print("Invalid choice, please try again.")
+    else:
+        print("Invalid username or password!")
+        count -= 1
+        print("Remaining attempts =", count)
+        if count == 0:
+            print("Access denied.")
