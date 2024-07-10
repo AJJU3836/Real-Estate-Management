@@ -55,10 +55,10 @@ def delete_property():
             property_price.pop(i)
             break
 
-            with open('property.csv', mode='w', newline='') as file:
-                writer = csv.writer(file)
-                for j in range(len(property_id)):
-                    writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
+    with open('property.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        for j in range(len(property_id)):
+            writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
 
 def total_properties():
     print("\nTotal Properties")
