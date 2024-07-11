@@ -13,10 +13,7 @@ def add_property():
     property_location.append(prop_location)
     property_price.append(prop_price)
 
-    with open('propertyak.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        for i in range(len(property_id)):
-            writer.writerow([property_id[i], property_name[i], property_location[i], property_price[i]])
+    save_properties()
 
 def view_properties():
     print("\nView Properties")
@@ -39,10 +36,7 @@ def update_property():
             property_location[i] = new_location
             property_price[i] = new_price
 
-            with open('property.csv', mode='w', newline='') as file:
-                writer = csv.writer(file)
-                for j in range(len(property_id)):
-                    writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
+            save_properties()
             break
 
 def delete_property():
@@ -54,12 +48,8 @@ def delete_property():
             property_name.pop(i)
             property_location.pop(i)
             property_price.pop(i)
+            save_properties()
             break
-
-    with open('property.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        for j in range(len(property_id)):
-            writer.writerow([property_id[j], property_name[j], property_location[j], property_price[j]])
 
 def total_properties():
     print("\nTotal Properties")
@@ -84,6 +74,12 @@ def costly_property():
     print("Location: ", property_location[max_index])
     print("Price: ", property_price[max_index])
 
+def save_properties():
+    with open('property.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        for i in range(len(property_id)):
+            writer.writerow([property_id[i], property_name[i], property_location[i], property_price[i]])
+
 # Customer management functions
 def add_customer():
     print("\nAdd Customer")
@@ -95,10 +91,7 @@ def add_customer():
     customer_name.append(cust_name)
     customer_contact.append(cust_contact)
 
-    with open('customersak.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        for i in range(len(customer_id)):
-            writer.writerow([customer_id[i], customer_name[i], customer_contact[i]])
+    save_customers()
 
 def view_customers():
     print("\nView Customers")
@@ -119,10 +112,7 @@ def update_customer():
             customer_name[i] = new_name
             customer_contact[i] = new_contact
 
-            with open('customers.csv', mode='w', newline='') as file:
-                writer = csv.writer(file)
-                for j in range(len(customer_id)):
-                    writer.writerow([customer_id[j], customer_name[j], customer_contact[j]])
+            save_customers()
             break
 
 def delete_customer():
@@ -133,12 +123,14 @@ def delete_customer():
             customer_id.pop(i)
             customer_name.pop(i)
             customer_contact.pop(i)
+            save_customers()
             break
 
+def save_customers():
     with open('customers.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
-        for j in range(len(customer_id)):
-            writer.writerow([customer_id[j], customer_name[j], customer_contact[j]])
+        for i in range(len(customer_id)):
+            writer.writerow([customer_id[i], customer_name[i], customer_contact[i]])
 
 # User management functions
 def load_users():
@@ -196,7 +188,7 @@ users = load_users()
 
 # Load property data from CSV file if it exists
 try:
-    with open('property.csv', mode='r') as file:
+    with open('propertyak.csv', mode='r') as file:
         reader = csv.reader(file)
         for row in reader:
             property_id.append(row[0])
@@ -208,7 +200,7 @@ except FileNotFoundError:
 
 # Load customer data from CSV file if it exists
 try:
-    with open('customers.csv', mode='r') as file:
+    with open('customersak.csv', mode='r') as file:
         reader = csv.reader(file)
         for row in reader:
             customer_id.append(row[0])
@@ -270,4 +262,3 @@ while True:
         break
     else:
         print("Invalid choice, please try again.")
-1
