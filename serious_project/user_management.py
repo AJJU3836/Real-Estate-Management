@@ -42,3 +42,6 @@ def login():
             if count == 0:
                 print("Access denied.")
                 return None, None
+
+# Load users data when the module is imported
+load_users()

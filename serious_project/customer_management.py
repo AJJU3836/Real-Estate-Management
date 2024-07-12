@@ -23,7 +23,6 @@ def save_customers():
             writer.writerow([customer_id[i], customer_name[i], customer_contact[i]])
 
 def add_customer():
-    print("\nAdd Customer")
     cust_id = input("Enter Customer ID: ")
     cust_name = input("Enter Customer Name: ")
     cust_contact = input("Enter Customer Contact: ")
@@ -35,13 +34,11 @@ def add_customer():
     save_customers()
 
 def view_customers():
-    print("\nView Customers")
     print("ID \t Name \t\t Contact")
     for i in range(len(customer_id)):
         print(customer_id[i], "\t", customer_name[i], "\t", customer_contact[i])
 
 def update_customer():
-    print("\nUpdate Customer")
     cust_id = input("Enter Customer ID to update: ")
     for i in range(len(customer_id)):
         if customer_id[i] == cust_id:
@@ -57,7 +54,6 @@ def update_customer():
             break
 
 def delete_customer():
-    print("\nDelete Customer")
     cust_id = input("Enter Customer ID to delete: ")
     for i in range(len(customer_id)):
         if customer_id[i] == cust_id:
@@ -66,3 +62,6 @@ def delete_customer():
             customer_contact.pop(i)
             save_customers()
             break
+
+# Load customers data when the module is imported
+load_customers()
