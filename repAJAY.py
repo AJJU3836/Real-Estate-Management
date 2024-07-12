@@ -188,7 +188,7 @@ users = load_users()
 
 # Load property data from CSV file if it exists
 try:
-    with open('propertyak.csv', mode='r') as file:
+    with open('property.csv', mode='r') as file:
         reader = csv.reader(file)
         for row in reader:
             property_id.append(row[0])
@@ -200,7 +200,7 @@ except FileNotFoundError:
 
 # Load customer data from CSV file if it exists
 try:
-    with open('customersak.csv', mode='r') as file:
+    with open('customers.csv', mode='r') as file:
         reader = csv.reader(file)
         for row in reader:
             customer_id.append(row[0])
