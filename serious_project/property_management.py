@@ -99,68 +99,61 @@ def costly_property():
     print("Location: ", prop_locations[max_index])
     print("Price: ", prop_prices[max_index])
 
-def main():
-    cm.load_customers()
-    load_properties()
-    um.load_users()
+# Load customers, properties, and users
+cm.load_customers()
+load_properties()
+um.load_users()
 
-    while True:
-        print("1. Register User \n2. Login \n3. Exit")
-        choice = int(input("Enter your choice: "))
-        if choice == 1:
-            um.register_user()
-        elif choice == 2:
-            username, role = um.login()
-            if username:
-                if role == 'admin':
-                    admin_menu()
-                elif role == 'customer':
-                    customer_menu()
-        elif choice == 3:
-            break
-        else:
-            print("Invalid choice, please try again.")
-
-def admin_menu():
-    while True:
-        print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Costliest Property \n7. Add Customer \n8. View Customers \n9. Update Customer \n10. Delete Customer \n11. Logout")
-        ch = int(input("Enter your choice: "))
-        if ch == 1:
-            add_property()
-        elif ch == 2:
-            view_properties()
-        elif ch == 3:
-            update_property()
-        elif ch == 4:
-            delete_property()
-        elif ch == 5:
-            total_properties()
-        elif ch == 6:
-            costly_property()
-        elif ch == 7:
-            cm.add_customer()
-        elif ch == 8:
-            cm.view_customers()
-        elif ch == 9:
-            cm.update_customer()
-        elif ch == 10:
-            cm.delete_customer()
-        elif ch == 11:
-            break
-        else:
-            print("Invalid choice, please try again.")
-
-def customer_menu():
-    while True:
-        print("1. View Properties \n2. View Customers \n3. Logout")
-        ch = int(input("Enter your choice: "))
-        if ch == 1:
-            view_properties()
-        elif ch == 2:
-            cm.view_customers()
-        elif ch == 3:
-            break
-        else:
-            print("Invalid choice, please try again.")
-
-main()
+# Main loop
+while True:
+    print("1. Register User \n2. Login \n3. Exit")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        um.register_user()
+    elif choice == 2:
+        username, role = um.login()
+        if username:
+            if role == 'admin':
+                while True:
+                    print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Costliest Property \n7. Add Customer \n8. View Customers \n9. Update Customer \n10. Delete Customer \n11. Logout")
+                    ch = int(input("Enter your choice: "))
+                    if ch == 1:
+                        add_property()
+                    elif ch == 2:
+                        view_properties()
+                    elif ch == 3:
+                        update_property()
+                    elif ch == 4:
+                        delete_property()
+                    elif ch == 5:
+                        total_properties()
+                    elif ch == 6:
+                        costly_property()
+                    elif ch == 7:
+                        cm.add_customer()
+                    elif ch == 8:
+                        cm.view_customers()
+                    elif ch == 9:
+                        cm.update_customer()
+                    elif ch == 10:
+                        cm.delete_customer()
+                    elif ch == 11:
+                        break
+                    else:
+                        print("Invalid choice, please try again.")
+            elif role == 'customer':
+                while True:
+                    print("1. View Properties \n2. View Customers \n3. Logout")
+                    ch = int(input("Enter your choice: "))
+                    if ch == 1:
+                        view_properties()
+                    elif ch == 2:
+                        cm.view_customers()
+                    elif ch == 3:
+                        break
+                    else:
+                        print("Invalid choice, please try again.")
+    elif choice == 3:
+        break
+    else:
+        print("Invalid choice, please try again.")
