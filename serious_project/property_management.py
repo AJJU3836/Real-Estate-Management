@@ -226,13 +226,15 @@ while True:
                         print("Invalid choice, please try again.")
             elif role == 'customer':
                 while True:
-                    print("1. View Properties \n2. View Customers \n3. Logout")
+                    print("1. View Properties \n2. View Cheapest Property \n3. View Costliest Property \n4. Logout")
                     ch = int(input("Enter your choice: "))
                     if ch == 1:
                         view_properties()
                     elif ch == 2:
-                        cm.view_customers()
+                        cheapest_property()
                     elif ch == 3:
+                        costly_property()
+                    elif ch == 4:
                         break
                     else:
                         print("Invalid choice, please try again.")
