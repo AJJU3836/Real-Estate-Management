@@ -99,6 +99,83 @@ def costly_property():
     print("Location: ", property_location[max_index])
     print("Price: ", property_price[max_index])
 
+def average_property_rate():
+    if len(property_price) == 0:
+        print("No properties available.")
+        return
+    
+    total_price = sum(int(price) for price in property_price)
+    avg_price = total_price / len(property_price)
+
+    print("\nAverage Property Rate")
+    print("Average Price: ", avg_price)
+
+def cheapest_property():
+    if len(property_price) == 0:
+        print("No properties available.")
+        return
+    
+    min_price = int(property_price[0])
+    min_index = 0
+
+    for i in range(1, len(property_price)):
+        if int(property_price[i]) < min_price:
+            min_price = int(property_price[i])
+            min_index = i
+
+    print("\nCheapest Property")
+    print("ID: ", property_id[min_index])
+    print("Name: ", property_name[min_index])
+    print("Location: ", property_location[min_index])
+    print("Price: ", property_price[min_index])
+
+def generate_report():
+    print("\nProperty Report")
+    print("="*30)
+    print(f"Total Properties: {len(property_id)}")
+    
+    if len(property_price) == 0:
+        print("No properties available.")
+        return
+    
+    total_price = sum(int(price) for price in property_price)
+    avg_price = total_price / len(property_price)
+    
+    max_price = int(property_price[0])
+    max_index = 0
+    min_price = int(property_price[0])
+    min_index = 0
+    
+    for i in range(1, len(property_price)):
+        if int(property_price[i]) > max_price:
+            max_price = int(property_price[i])
+            max_index = i
+        if int(property_price[i]) < min_price:
+            min_price = int(property_price[i])
+            min_index = i
+    
+    print(f"Average Property Rate: {avg_price}")
+    print("\nCostliest Property")
+    print("-------------------")
+    print(f"ID: {property_id[max_index]}")
+    print(f"Name: {property_name[max_index]}")
+    print(f"Location: {property_location[max_index]}")
+    print(f"Price: {property_price[max_index]}")
+    
+    print("\nCheapest Property")
+    print("------------------")
+    print(f"ID: {property_id[min_index]}")
+    print(f"Name: {property_name[min_index]}")
+    print(f"Location: {property_location[min_index]}")
+    print(f"Price: {property_price[min_index]}")
+    
+    print("\nDetailed List of Properties")
+    print("---------------------------")
+    print("ID \t Name \t\t Location \t\t Price")
+    for i in range(len(property_id)):
+        print(f"{property_id[i]} \t {property_name[i]} \t {property_location[i]} \t {property_price[i]}")
+
+
 # Load initial data
 cm.load_customers()
 load_properties()
@@ -115,7 +192,7 @@ while True:
         if username:
             if role == 'admin':
                 while True:
-                    print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Costliest Property \n7. Add Customer \n8. View Customers \n9. Update Customer \n10. Delete Customer \n11. Logout")
+                    print("1. Add Property \n2. View Properties \n3. Update Property \n4. Delete Property \n5. Total Properties \n6. Costliest Property \n7. Average Property Rate \n8. Cheapest Property \n9. Generate Report \n10. Add Customer \n11. View Customers \n12. Update Customer \n13. Delete Customer \n14. Logout")
                     ch = int(input("Enter your choice: "))
                     if ch == 1:
                         add_property()
@@ -130,14 +207,20 @@ while True:
                     elif ch == 6:
                         costly_property()
                     elif ch == 7:
-                        cm.add_customer()
+                        average_property_rate()
                     elif ch == 8:
-                        cm.view_customers()
+                        cheapest_property()
                     elif ch == 9:
-                        cm.update_customer()
+                        generate_report()
                     elif ch == 10:
-                        cm.delete_customer()
+                        cm.add_customer()
                     elif ch == 11:
+                        cm.view_customers()
+                    elif ch == 12:
+                        cm.update_customer()
+                    elif ch == 13:
+                        cm.delete_customer()
+                    elif ch == 14:
                         break
                     else:
                         print("Invalid choice, please try again.")
